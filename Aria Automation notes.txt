@@ -1,0 +1,926 @@
+1. Aria automation overview:
+
+Describe the purpose of VMware Aria Automation
+Identify the services offered by VMware Aria Automation
+Describe the SaaS version of VMware Aria Automation and identify its benefits
+Explain the VMware Aria Universal Suite licensing model
+
+
+
+Aria Automation platform automates the delivery of VM's, applications and personalized IT services across multivendor and multicloud infrastructure
+
+Components of Aria Automation:5
+
+1. Aria automation Assembler:
+(Cloud assembly --old version )
+is cloud based service used to iteratively develop(create) and deploy machines, applications and services to multiple clouds.
+
+1. Multiple cloud accounts:
+	resource providers (Vsphere, aws, azure gets connected)
+2. IAC Cloud templates(blue print):
+Design your template can be able use same with minimal changes based on the environment or account
+3. Kubernetes integration:
+automate containerization automation 
+4. Extensibility:
+end to end automation 
+third party integrations can done here.
+
+2. Aria Automation Consumption:
+services broker catalogue management 
+aggregates services from multiple sources into a single catalogue provided to the users.
+users use this catalog to request the offered services.
+
+3. Aria Automation pipelines:
+
+code stream devops 
+
+its continuous integration and continuous delivery(CI/CD) tool, that you can deliver your software rapidly and reliably with little overhead.
+
+4. Aria Automation Orchestrator:
+its a development and process automation platform that provides an extensive library of workflows in addition to a workflow engine.
+
+5. Aria Automation config:
+salt stack 
+
+its a software configuration automation component in aria automation.
+with this you can easily define optimized, compliant software states enforces them to across your environment.
+
+configuration management tool.
+
+
+About Aria automation SAAS model:
+
+VMware cloud services offer a web based software as service (SAAS) version of Aria Automation.
+
+https://cloud.vmware.com/vrealize-automation-cloud.
+
+not bother about the installation and configuration of aria automation, once SAAS model is subscribed them client can consume the Aria automation in their environment.
+Benefits:
+1.Pay for what you use
+2. No need to patch/upgrade or monitor
+3.Access to new features without waiting for 6 to 12 months release cycle
+4. Always available chat support
+5. Single view Across multiple clouds and data centers
+
+
+Intro to Aria Automation:
+
+Aria automation is a platform which automates the delivery of VM's applications, and personalized IT service across multi vendor and multi cloud infrastructure.
+
+it delivers self service automation, Devops for infrastructure, Kubernetes automation, configuration management and network automation
+
+you can integrate ,streamline and modernize traditional, cloud native and multicloud infra with Aria automation
+
+it offers a common service catalog for administrators, Developers and business users to request IT services ,including infra , applications and desktops
+
+
+Key components::
+
+1. Aria automation Assembler:
+primary purpose of Assembler is to create and deploy Aria Automation templates.
+
+Aria Automation templates are the specifications that define the machines, applications and services that you create on cloud resource through Assembler.
+
+Assembler admin configure the infra to support the development and deployment of Aria automation templates.
+
+project members use Assembler to iteratively develop and deploy Automation templates to production ready state.
+
+Cloud accounts :
+
+Vcenter, VMware cloud foundation, AWS, AZure and google are some of the cloud accounts supported by Aria Automation Assembler.
+
+Users can create Aria Automation template as code in YAML format.
+
+Aria Automation Consumption:
+
+its aggregates services from multiple sources into single catalog provided to the users
+
+As a cloud administrator , you create one of the following catalog items.
+1.Aria Automation templates
+2. AWS cloud formation template
+3. Aria Automation pipelines
+4. Extensibility ACtion
+5. Aria Automation orchestrator workflow
+
+users can use this created catalog to request catalog items.
+
+
+Aria Automation pipeline:
+
+its supports to deploy monolithic legacy applications in addition to Docker and Kubernetes container running on multiple clouds.
+
+you can create pipeline that runs actions to build, Deploy, test and release your software.
+
+Aria Automation pipelines runs your software through each stage of the pipeline until it is ready to be release to prod.
+
+you can integrate pipeline with one or more devops tools.
+1.Datasources, repositories or notification systems which provide data for the pipeline to run
+
+Aria Automation Orchestrator:
+
+orchestrator uses workflows to simplify and automate complex data center infra processes.
+
+workflow :workflow is a program that describes a sequence of tasks that achieve a specific function.
+
+
+Aria Automation config:
+Core concept of Aria Automation config is remote execution using the server client model.
+
+Aria automation config has 2 system classes:
+1. Salt Master: is responsible for sending commands to the salt minion, its also aggregates and display the results of commands that are received from Salt minion. Single Salt master can manage thousands of salt minion
+2. Salt minion
+
+
+
+VMware Aria Automation Architecture:
+
+objective of course:
+
+1. what components used for standard deployment
+2. what components used for clustered deployment
+3. identify the components of aria automation
+4. Describe the role of Kubernetes in the VMware Aria Automation Appliance.
+
+standard deployment:
+can be deployed for Lab infra, POC to the customer and small infrastructure deployments. not considered high availability of aria automation.
+
+components: single instance of below components
+1. Aria Suite lifecycle(Easy installer)
+
+it provides comprehensive solution to deploy, configure and manage the VMware Aria suite products,
+single console which manages all aria suite products
+such as:
+	1. Aria Automation
+	2. workspace one
+	3. Aria operations
+	4. aria operations for logs
+	5. Aria operations for networks
+2. workspace one Access:
+	workspace one is an identity as a service (IDAAS) solution:
+	it provides multifactor authentication, conditional access and single sign one to SAAS, Web and native mobile applications
+
+VMware products can use workspace one access as an enterprise SSO solution.
+3. Aria Automation:
+
+inside preload(namespace) aria automation services are running.
+
+ingress control, rabbit mq and postgres sql.
+
+Aria automation appliance powered by photon os . aria automation includes native Kubernetes to host containerization services.
+
+aria automation is a Kubernetes services architecture.
+
+aria automation appliance services are deployed and managed as pods by using industry standard Kubernetes
+
+steps to deploy:
+1, appliance is powered on 
+2. docker is installed and Kubernetes cluster are configured
+3. helm takes images from the private registry and deploy pods
+4. aria automation services are running as pods 
+
+Helm is a package manager for Kubernetes, its used to package, configure and deploy applications and services onto kuberenetes clusters.
+
+POD is a small deployable unit in kuberenetes.Docker engine hosts the containers in a Pod.
+Clustered:
+
+Production infra, Enterprise large environments, High availability matters here.
+
+here Aria Automation , work space one are installed under the separate cluster where any of the one appliance fails other appliance will work seamlessly without having any down or issues.
+
+
+3. Aria Automation installation:
+
+To setup a Aria Automation environment you must install VMware aria suite lifecycle, workspace ONE access and VMware aria automation. Deploying all three products separately requires time and effort.
+
+VMware Aria Easy installer deploys 3 components with minimal steps in less time.
+
+use QuickStart Wizard to easily configure the infrastructure and deploy the first Aria automation template. 
+
+objectives:
+1. describe aria automation installation process
+2. Use VMware aria easy installer to set up a aria automation environment
+3. Discuss the importance of VMware aria Migration
+4. use QuickStart wizard to configure the infrastructure and deploy VMware aria automation template.
+
+Minimum system resources:
+
+Aria Suite lifecycle appliance:
+CPU: 2vCpu
+RAM: 6GB
+Disk:78GB
+
+Workspace one access appliance:
+CPU: 8vCpu
+RAM: 16GB
+Disk: 100GB
+
+VMware Aria Automation appliance:
+CPU: 12vCpu
+RAM: 42GB
+Disk: 246GB
+
+Easy installer sections:
+
+easy installer simplifies the installation by splitting the configurations into multiple sections.
+1. common configurations
+2. appliance -specific configurations
+
+common configurations defines the following settings:
+1.Target vCenter system
+2.Target data center or vm folder
+3. Target compute resources
+4.Target datastores
+5.common network settings
+6. common password.
+
+Workspace one used for Aira automation authentication:
+
+Module Lessons
+Authentication with Workspace ONE Access
+Authorization with VMware Aria Automation Roles
+Multitenancy and Virtual Private Zones
+
+
+Learner objectives:
+
+1. Describe how Identity management works in VMware aria Automation
+2. Identify the steps involved in Integrating Workspace one Access with AD
+3. outline the features of Workspace One Access.
+
+
+Authentication and Authorization:
+Authentication:
+1. confirms your identity 
+2.Verifies who
+3. requires login credentials
+
+Authorization:
+1. Determines what you have access to
+2. Grants permission to access a resource
+3. Requires user a roles
+
+Architecture of workspace one access:
+the identity service runs as a Pod in Kubernetes.
+if a user tries to log into VMware Aria Automation:
+1. the identity Service redirects the request to the Workspace One Access URL.
+2.Workspace one Access validates the user credentials with AD
+3. the user can log in to the Aria Automation console.
+
+
+POD: Identity-app <--->Identity DB <--->Workspace One --->AD
+
+Administrator use Workspace one access to manage user authentication, access policies and entitle users to resources.
+
+administrator log in using the default config admin user that is specified during the installation.
+
+the config admin user is assigned the super admin role, which has full administrator access in workspace one access.
+
+Directory integration:
+by integrating the enterprise Directory with Workspace one Access. you can sync users and groups from the Enterprise directory to Workspace one
+
+following types f directories are supported:
+1. AD over LDAP
+2. AD, integrated windows Authentication.
+
+Features of workspace one:
+1. access policies
+2. support for multiple user authentication methods
+3. 2factor Authentication
+4. Password recovery Assistant
+5. Just in time (JIT) user provisioning
+
+Features of Workspace ONE Access
+Workspace ONE Access includes the following additional features:
+Access policies
+Support for multiple user authentication methods
+Two-factor authentication
+Password recovery assistant
+Just-in-time (JIT) user provisioning
+Workspace ONE Access provides several additional features:
+Access policies:
+Access policies include rules that specify criteria that users must meet to log in to their applications portal and to use their resources.
+Administrators can use access policies to configure features such as mobile SSO, conditional access to applications based on enrollment and compliance status, and multifactor authentication.
+Workspace ONE Verify:
+Workspace ONE Verify is a configurable authentication method that can be used as the second authentication method when two-factor authentication is required.
+The first authentication method is user name and password, and the second authentication method is Workspace ONE Verify.
+Password recovery: Using the password recovery assistant, a custom message can be displayed when the end user clicks Forgot password on the login screen.
+Just-in-time (JIT) provisioning:
+You can use JIT user provisioning to create users in the Workspace ONE Access service dynamically at login time by using SAML assertions sent by a third-party identity provider.
+You can use the JIT users feature to restrict access to VMware Aria Automation to only users who are intended to log in.
+The JIT users are only synchronized at first login.
+JIT user provisioning is available only for third-party identity providers.
+With JIT provisioning, you can add users without synchronizing from Active Directory.
+The JIT feature can be used to provide temporary access to services. An example use case is interns working on a project for an organization. Interns do not require permanent credentials.
+
+Roles in VMware Aria Automation:
+
+Roles define a set of privileges associated with users.
+these privileges are tasks that users can perform.
+
+depending on your responsibilities you might be assigned one or more roles.
+
+Aria Automation roles are broadly categorized as follows:
+
+1.organization roles
+2.service roles
+
+Organization roles are defined at the topmost Aria Automation layer.
+
+Following organization roles exist in Aria Automation:
+
+1. organization owner
+2. Organization Member
+
+Service roles define user access to individual services offered by Aria Automation.
+
+Aria Automation offers the following services:
+1. Aria Automation Assembler
+2. Aria Automation Pipelines
+3.Aria Automation Orchestrator
+4. Aria Automation Consumption
+5. Aria Automation Config
+
+Organizations and Services:
+
+the organization and service user roles determine what the user can view and do in each service.
+the roles at the organization level are either organization owner or organization Member.
+
+Each service in Aria Automation has more than one role.
+
+VMware aria Automation Assembler service includes the following roles.
+
+1. Aria Automation Assembler Administrator
+2. Aria Automation Assembler User
+3. Aria Automation Assembler Viewer
+
+Any user in Aria Automation Must be assigned an organization role with an Associated service role.
+
+Assigning Roles:
+
+to Assign roles in Automation console:
+1. in the Navigation pane on the left select identity and access Management  > Enterprise Groups.
+2. Click assign Roles and then select enterprise group.
+3. Select the organization role from the assign organization role drop down menu.
+4. Select a service from the assign service Roles dropdown menu.
+5. select the check box next to the service roles that you want to assign to the user.
+
+in the example , the roles are assigned to the users in the FIN-CA-Admins enterprise group:
+1. organization role : organization Owner
+2. Service : Cloud Assembly 
+3. Service Roles : Cloud assembly admin
+
+the service roles changes based on the selected service.
+
+About Organization Roles:
+Aria Automation has 2 levels of organization roles.
+1. organization Owner
+	1. Can access the services, Identity and access management and Branding section of the console.
+	2.Key Role: Assign roles to AD users
+
+2. Organization Member.
+	1. can only access the services section of the console
+	2. Key role: Create and deploy Aria Automation templates.
+
+with key differences in their level of access and their responsibilities.
+
+for example: Aria Automation Assembler admin has unique capabilities as an organization Owner compared to an organization member.
+
+Key responsibility of an organization owner is to assign roles.
+
+Service Roles:
+VMware aria Automation Assembler :
+
+Assembler service has multiple roles and these roles have different key Responsibilities.
+
+Assembler have the following service roles:
+1. Aria Automation Assembler administrator:
+	1. Create Cloud Accounts and cloud Zones
+	2. Create and Manage Projects, Flavor, Image mappings and tags.
+	3. configure and Manage Network profile and storage profiles.
+
+2. Aria Automation Assembler User:
+	1. create Aria Automation Templates
+	2. Deploy machines and services
+	3. Manage Deployments
+3. Aria Automation Assembler Viewer:
+	1. Read only access role
+	2. View Projects, Cloud Zones, Aria Automation Templates and deployments.
+
+in addition to its service roles, Aria Automation Assembler has following project roles that cab be assigned on a per project basis:
+
+1. Project Admin: View all provisioned resources, Provision new resources and manage users.
+2. Project Members: View their own provisioned resources and work within their projects to design and deploy Aria Automation templates.
+3. Project Viewers: view all provisioned resources and perform non-destructive actions, such as downloading aria automation templates.
+project viewers are restricted to read only access.
+project supervisors: Approve deployment requests 
+to provide projects supervisors with context for approvals, you should consider also assigning them project member or viewer roles.
+
+
+Service Roles: Aria Automation Consumption:
+Aria automation consumption service has multiple roles with several key responsibilities:
+
+Aria Automation consumption has the following service roles:
+
+1. Aria Automation consumption administrator:
+	1. Configure content sources and policy definitions
+	2. Add cloud account and cloud zones.
+
+2. Aria Automation consumption User:
+	1.Access to the self service catalog
+	2. Deploy machines and services
+	3. Manage deployments
+3. Aria Automation consumption viewer:
+	1. Read only access role
+	2. view projects, content source, policy definition, cloud accounts, and cloud zones.
+	3. view available catalog items, machines and deployments.
+
+in addition to its service roles, you can define the following  aria automation consumption project roles:
+1 Project administrator
+2 project member
+3 project viewer
+4 project supervisor
+
+Service roles: Aria Automation pipelines:
+
+Aria automation pipelines had the following service roles:
+
+1. Aria Automation pipelines Administrator:
+	1. Create, manage and execute pipelines
+	2. Mark an endpoint or variable as restricted
+	3. Run pipelines that include restricted endpoints or variables
+	4. create, view and manage Dashboards.
+
+2. Aria Automation pipelines Developer:
+	can perform the same actions as an admin except running and managing restricted endpoints or variables
+3. Aria Automation Pipelines user:
+	can access the aria automation pipelines service
+
+4.Aria Automation pipelines viewer
+	1. view pipelines, endpoints and dashboards
+	2. view pipeline execution
+5. Aria automation pipelines executor
+	1. can perform the same actions as viewer
+	2. Run, resume, pause and cancel pipeline execution.
+
+in addition to its service roles you cab define the following aria automation pipelines project roles:
+
+1. Project admin
+2. Project Member
+3. Project Viewer 
+
+to define Aria automation pipelines project role:
+
+Automation console --> Configure --->Projects in the navigation pane on the left.
+
+open target project and click users Tab.
+
+
+Aria Orchestrator Service roles :
+
+Aria orchestrator has the following service roles:
+
+1. Aria Automation orchestrator Admin:
+	1. Access to built-in workflows,actions, policies, built in packages, configurations and resources
+	2. Add git repositories
+
+2. Aria Automation orchestrator workflow Designer:
+	1. Create new workflows, actions and policies
+	2. import packages, configurations and resources
+3. Aria Automation Orchestrator viewer:
+	1. read only access role
+
+Aria Automation config Service roles:
+
+Aria automation config has following roles:
+
+1. Aria Automation config user:
+	1. this default role is assigned to all new local users and directory synced users
+	2. it contains fundamental permissions such as read access
+	3. Generate  reports for certain minions and job types
+	4. Permissions are limited to the roles resource access.
+
+2. Aria Automation config Admin:
+	1. configure the salt master and salt minions
+	2. create and manage resources such as jobs, remote execution module and targets
+	3. Permissions are limited to the roles resource access.
+
+3. Aria Automation config Superuser:
+	1. Perform any operation in Aria Automation config
+
+To Access the aria Automation config  service , the user must also be assigned the Aria Automation assembler admin role.
+
+
+Aria Automation also have the custom roles :
+
+to create custom roles follow the navigation:
+ Infrastructure -->Admin --Customroles --> New roles
+
+you can create custom roles to define granular user roles.
+A custom role is defined by the Automation Assembler Admin or Automation Consumption admin for all the services.
+After defining a custom role you should assign it to a user or group. group or user must have at least viewer role in the relevant services so that they can access the service.
+
+
+Multitenancy and virtual Private Zones:
+Objectivies:
+1.create multitenancy certificates
+2. enable multitenancy in workspace one Access
+3. Enable multitenancy in Aria Automation
+4. create tenants
+
+Multitenancy in Aria Automation:
+
+with multitenancy a single instance of Aria Automation can be securely shared by multiple customers(tenants)
+
+tenants can create their own projects, flavor mappings, image mapping, tags, deployments and so on.
+
+the multitenancy configuration procedure is performed Aria Suite lifecycle.
+
+Configure DNS records -->Create multitenancy certificates, import multitenancy certificates --> Apply multitenancy certificate to workspace ONE, configure Multi tenancy in workspace one --> Apply multitenancy certificate to Aria Automation, configure multitenancy Aria Automation.
+
+
+Configure DNS Records:
+
+Multitenancy in VMware Aria Automation requires DNS records.
+
+Configuring multitenancy in VMware Aria Automation requires configuring additional DNS records.
+In the example, the machines highlighted in green (sa-vrlcm-01, sa-vidm-01, and sa-vra-01) were deployed when VMware Aria Automation was originally deployed in a single-tenant configuration.
+These machines have the following FQDNs:
+The VMware Aria Suite Lifecycle appliance: sa-vrlcm-01.vclass.local
+The Workspace ONE Access appliance: sa-vidm-01.vclass.local
+The VMware Aria Automation appliance: sa-vra-01.vclass.local
+In addition to the DNS records for those initial machines, configuring multitenancy requires creating additional DNS A records and CNAME records.
+The DNS records for the machines highlighted in blue (default-tenant, tenant-1, and tenant-2) are A records. You must create an A record for the default tenant and a separate A record for each of the other tenants. The IP address for each of these A records must match the IP address of the Workspace ONE Access appliance. In the example, the IP address is 172.20.10.62 to match the IP address of sa-vidm-01.
+These machines have the following FQDNs:
+default-tenant.vclass.local
+tenant-1.vclass.local
+tenant-2.vclass.local
+The DNS records for the machines highlighted in red (tenant-1.sa-vra-01 and tenant-2.sa-vra-01) are CNAME records. You must create a separate CNAME record for each tenant. The CNAME record for each tenant must point to the FQDN of the VMware Aria Automation appliance. In the example, this CNAME record is sa-vra-01.vclass.local.
+These machines have the following FQDNs:
+tenant-1.sa-vra-01.vclass.local
+tenant-2.sa-vra-01.vclass.local
+The tenant CNAME records use the name of the VMware Aria Automation appliance as a subdomain. These FQDNs can be lengthy, which is something to consider when naming the VMware Aria Automation appliance.
+Do not create a CNAME record for the default tenant.
+
+
+Creating Multitenancy Certificates
+Generate new Certificate Signing Requests (CSRs) in VMware Aria Suite Lifecycle by selecting Locker > Certificates > GENERATE.
+
+You must generate separate certificates for Workspace ONE Access and VMware Aria Automation.
+In the Server Domain/Hostname text box of the Workspace ONE Access certificate, include the following values as a comma-separated list:
+sa-vidm-01.vclass.local: FQDN of the Workspace ONE Access appliance
+default-tenant.vclass.local: FQDN of the default tenant
+tenant-1.vclass.local: FQDN of the first tenant
+tenant-2.vclass.local: FQDN of the second tenant
+FQDNs of additional tenants
+The certificate for Workspace ONE Access can optionally include the IP address of the Workspace ONE Access appliance.
+In the Server Domain/Hostname text box of the VMware Aria Automation certificate, include the following values as a comma-separated list:
+sa-vra-01.vclass.local: FQDN of the VMware Aria Automation appliance
+tenant-1.sa-vra-01.vclass.local: FQDN of the first tenant
+tenant-2.sa-vra-01.vclass.local: FQDN of the second tenant
+FQDNs of any additional tenants
+The certificate for VMware Aria Automation can optionally include the IP address of the VMware Aria Automation appliance.
+Using wildcard certificates is possible, but Subject Alternative Name (SAN) certificates are generally preferred for security reasons.
+
+
+Applying Multitenancy Certificates to Workspace ONE Access (1):
+
+To start applying the multitenancy certificate to Workspace ONE Access, you trigger an inventory sync.
+
+To trigger an inventory sync and start applying multitenancy:
+Log in to VMware Aria Suite Lifecycle.
+Select Lifecycle Operations > Environments in the left navigation pane.
+Click the vertical ellipsis icon next to globalenvironment and select Trigger Inventory Sync.
+
+
+Applying Multitenancy Certificates to Workspace ONE Access (2)
+After triggering an inventory sync, you replace the single-tenant certificate with the multitenancy certificate.
+
+To replace the single-tenant certificate with the multitenancy certificate that you created:
+Select Lifecycle Operations > Environments in the left navigation pane.
+Under globalenvironment, click VIEW DETAILS.
+Click the vertical ellipsis icon next to VMware Identity Manager and select Replace Certificate.
+During the process, you are prompted to re-trust the certificate for VMware Aria Automation. Select the check box.
+You are prompted to have a snapshot taken. The snapshot is a protective measure that enables you to roll back if the procedure fails.
+You are prompted to run a precheck. If errors are found during the precheck, fix these issues. A normal and expected warning appears that the procedure will shut down the product to perform the snapshot. This process causes downtime, so the precheck prompts you to consent to the shutdown.
+
+
+Configuring Multitenancy in Workspace ONE Access
+To enable multitenancy in Workspace ONE Access, you select Identity and Tenant Management > Tenant Management in VMware Aria Suite Lifecycle and click ENABLE TENANCY.
+
+When you use VMware Aria Suite Lifecycle to enable multitenancy in Workspace ONE Access, you are prompted to take a snapshot and perform an inventory sync.
+In the MasterTenant Alias text box, enter the name of the default tenant, which is also called the provider organization.
+
+
+Applying Multitenancy Certificates to VMware Aria Automation (1)
+To start applying the multitenancy certificate to VMware Aria Automation, you trigger an inventory sync.
+
+To begin the process of applying the multitenancy certificate to VMware Aria Automation:
+Log in to VMware Aria Suite Lifecycle.
+Select Lifecycle Operations > Environments in the left navigation pane.
+Click VIEW DETAILS under your existing VMware Aria Automation deployment.
+Click the vertical ellipsis icon next to vRealize Automation and select Trigger Inventory Sync.
+
+
+Applying Multitenancy Certificates to VMware Aria Automation (2)
+After triggering an inventory sync, you replace the single-tenant certificate with the multitenancy certificate.
+
+To replace the single-tenant certificate with the multitenancy certificate that you created:
+Select Lifecycle Operations > Environments in the left navigation pane.
+Click VIEW DETAILS under your existing VMware Aria Automation deployment.
+Click the vertical ellipsis icon next to vRealize Automation and select Replace Certificate.
+During the process, you are prompted to re-trust the certificate for VMware Aria Automation. Select the check box.
+You are prompted to have a snapshot taken. The snapshot is a protective measure that enables you to roll back if the procedure fails.
+You are prompted to run a precheck. If errors are found during the precheck, you must fix these issues. A normal and expected warning appears that the procedure will shut down the product to perform the snapshot. This shutdown causes downtime, so the precheck prompts you to consent to the shutdown.
+
+Configuring Multitenancy in VMware Aria Automation
+To create tenants, you select Identity and Tenant Management > Tenant Management and click ADD TENANT.
+When prompted, specify the name of the new tenant, the contact information and password, and other details.
+
+You can connect the new tenant to an Active Directory domain if the domain is already configured in the default tenant.
+
+Virtual Private Zones
+A Virtual Private Zone (VPZ) is a type of container of infrastructure capacity and services that can be defined and allocated to a tenant. The settings in each VPZ can only be changed by the Provider administrator.
+You can add unique or shared cloud accounts, with associated compute, storage, networking, and tags to each VPZ.
+Each component offers the same configuration options that might be available for a single-tenant configuration.
+
+
+Basic initial configurations:
+
+you can configure aria automation to start rapidly creating and deploying aria automation templates.
+
+objectives:
+
+1. create vcenter cloud account
+2. create cloud zones
+3. create projects
+4. create flavor  mappings
+5. create image mappings
+
+Basic configuration Road map:
+
+you configure several items to create and deploy aria automation templates.
+
+step 1: define resource providers by creating cloud accounts.
+step 2: Define resource subsystem by creating cloud zones
+step 3: Link resources and users by creating projects
+step 4: Define deployment sizing by creating flavor mapping
+step 5: Define deployment template by creating image mapping
+step 6:deploy Aria automation template 
+
+
+use the following options to set a basic configuration:
+
+Cloud account : connects to resource providers to provision and manage the cloud infra
+
+cloud zone: identifies a set of resources for provisioning within a cloud account
+
+project: define who can use what resources
+
+one or more flavors: groups a ser of target deployment sizing for specific cloud account/region.
+
+one or more image mappings: groups a ser of predefined target Operating system (OS) for specific cloud account /region.
+
+Creating cloud accounts:
+
+in the navigation pane on the left ,select infrastructure --> Connections--> Cloud accounts and click a resource provider from below list.
+
+1. Vcenterserver
+2. Microsoft Azure
+3. Google cloud
+4. AWS
+5. NSX T Manger
+6. NSX V Manager
+7. VMware Cloud Director
+8. vmware cloud Foundation
+9. VMware cloud on AWS.
+
+for example click on Vcenter to add vCenter system.
+
+cloud accounts connect systems to multiple types of resource providers, you can add or create multiple cloud accounts for each type of system.
+
+Adding a vCenter cloud account:
+
+1. Enter the cloud account name(QA-SA-VCSA-01--VCenter) and description.
+2. Enter the FQDN(sa-vcsa-01.vclass.local) or IP address of the Vcenter system.
+3. Enter the user name and password (Service account is recommended and best practice and same will be used for provisioning.)
+4 Click Validate.
+
+Creting Cloud Zone and enabling provisioning:
+
+when creating the coud accont the option is availabe to automatically create a cloud zone and enable provsioning.
+1. Slect the data centers to provision
+
+2.select the create cloud zone for the selected datacenters check box(optional)
+
+Aftervalidating the connection to a vcenter system appear. you must select allow provisioning on each datacenter on whch you plan to provision Aria automation templates.
+
+if you select the create cloudzone for selected dataceners check box then coud zones are created for those data centers. this method helps speed up the creation of basic configurtion.
+
+if not selected the check box then you can add cloud zone later.
+
+you can also connect to NSX endpoint if its configured and required for your environment.
+
+
+Creating cloud zones:
+
+A cloud zone helps to identify subsystem for provisioning with in a cloud account. in vsphere datacenters are provisioning systems.
+
+Navigate to navigation pane left---> Infrastructure-->Configure-->Cloud zone (datacenter)--.New Cloud Zone.
+
+the account/region can be selected from previously defined cloud account . you can also use placement policies and VM folders in vSphere.
+
+Capability tags help to identify specific systems that are associated with a particular template.
+
+you can select one of the placement policies from below list:
+
+Default: Distributes compute resources across clusters and hosts randomly.
+
+BINPACK: places compute resources on the most loaded host that has enough available resources to run the given compute.
+
+SPREAD: Provisions compute resources to the cluster or host with the fewest VM's.
+
+
+Cloud zones: selecting compute resources:
+
+on the compute tab, specify the compute resources that the cloud zone can use.
+
+1. select the clusters
+2. select the individual hosts.
+
+you can select one of the following options to specify which clusters and hosts to use as resources:
+1. Include all compute
+2. Manually select compute
+3. Dynamically include compute by tags.
+
+if you select a vsphere DRS cluster, only that cluster is available. If you select individual hosts, you can specify those individual hosts as targets. Cloud zones can be associated with projects at a later stage.
+
+
+Creating Projects:
+
+Projects organize the Aria Automation system into resources that are associated with users and groups.
+
+1. select infrastructure --> Administration --> Projects and click new Project.
+
+2. On the users tab add users and groups to the project.
+3. on the provisioning tab, link the project to cloud zones.
+
+Projects map compute resources to users and groups.
+
+
+Projects organize and govern which users can use which cloud zones to deploy Aria Automation templates in your cloud infra.
+
+Anyone who creates and deploys Aria Automation templates must be member of least one project.
+
+Add groups and users to the project and assign different roles to them.
+
+users and groups are assigned different roles:
+
+1. Administrator :can change project configuration, add or remove users and add or remove cloud Zones.
+2. Member: can use the project services and deploy Aria Automation template.
+3. Viewer: can only view Aria Automation templates and the deployments in this project but cannot deploy Aria Automation templates.
+4. Supervisor: Can approve policies in service broker if a policy is defined with the project supervisor as an approver.
+
+Adding cloud zones to project:
+
+on the provisioning tab, add cloud zones to the project.
+
+projects --> Provisioning --> Add cloud Zone.
+
+
+Each project must have at least one cloud zone for resources. you can connect multiple cloud zones to a project. The cloud zones can be of Different types: Vcenter, Google, AWS and others.
+
+for each zone, you can set a Zone priority and you can limit how many resources the project can use. the possible limits include the no.of instances, the number of CPU's, and the amount of memory.
+
+for vSphere cloud zones only , you can configure storage limits. the default value of 0 zero gives you unlimited instances.
+
+Creating Flavor Mappings:
+
+Flavor mappings define VM size limits to create combination of size configurations. to create Flavor mappings
+
+Infrastructure -->Configure --> Flavor Mappings --> New flavor mapping.
+
+
+in a flavor mapping you use natural language to define target deployment sizes for a specific cloud account.
+
+specify the cloud account that works with the flavor. set your no of cpus and the size of the memory 
+
+if you click the plus sign(+) icon at the end of the line, you can add multiple cloud accounts that work with the same size flavor.
+
+Creating image mappings:
+
+in a vcenter system the image mapping is a VM template. to create an image mapping select
+
+infrastructure -->Configure --> Image --> New Image
+
+in a image mapping you use natural language to define target deployment images for specific cloud account.
+
+you can map images to any kind of  template: predefined web server ,pre defined database servers or predefined application system,
+
+
+for Vcenter cloud account the target deployment image is a VM template.
+
+you can map images from multiple cloud accounts to the same image mappings.
+
+
+Test the configuration:
+
+test the project with cloud zones assigned to it by running a simulation.
+
+infrastructure -->Admin -->projects --> test configuration.
+
+
+the test configuration utility runs a simulation against yout configuration. Aria Automation templates or VM are not deployed. 
+
+you can simulate simple and complex Aria Automation templates instances and use different flavors and images in your simulation.
+
+you can select the type of test that you want to run (Single machine, 2 machines with network and so on) click simulate.
+
+
+Aria Automation Templates:
+
+Creating Basic templates.
+
+VMware aria templates are specifications that define VM's, apps and services on Cloud resources.
+
+Customization:
+Customization is the process of configuring a standard template referenced in an image mapping so that it is better suited to specific process.
+this process can include running commands after deployments, creating and editing configuration files. creating user accounts and installing software.
+
+cloud-init is an industry standard configuration package that enabled you to send configuration instructions to VM' as they are being deployed to customize the VM's . the VMware implementation of cloud-init is cloud config.
+
+
+Module lessons:
+1.creating basic Aria Automation template
+2.cloud-agnostic Aria Automation template
+3. using cloud config and cloud init
+4.Advanced YAML.
+
+
+1.creating basic Aria Automation template:
+Learning objectives:
+create basic aria automation template
+perform a deployment from Aria Automation template(how to use components)
+perform a deployment using the Create VM Wizard (with out temp can create VM).
+
+To create Aria Automation template:
+1. click the Design tab.
+2. Select Cloud templates in the left Navigation pane.
+3.Click new form
+4. Select Blank Canvas
+5. Enter a name and description for the VMware Aria Automation template.
+6. Associate the Aria Automation template with a project.
+7. Select Whether the Aria Automation templates is restricted to project members only.
+8 click create.
+
+resources pan:
+
+different platform 
+kubernetes, AWS, Azure , RED HAD , vSphere
+terraform, cloud agnostic, GCP 
+
+Design canvas :
+Place were we create templates by drag and drop of machines or components 
+
+3. configuration pan:
+
+Code pan:
+codes will be degined 
+properties pan:
+Image:
+CPU:
+Memory
+
+Inputs pan:
+can define any inputs that need to send to template .
+fqdn
+ipaddress.
+
+
+
+Creating basic Aria Automation template:
+
+1. create Aria Automation template
+2. Specify an image in your Aria Automation template
+3. specify a flavor in your aria AUtomation template
+4. Specify a vsphere folder in your Aria Automation template
+5. Add Vsphere Customization spec to your AAT
+6. Add a network to your AAT
+7. Specify a static IP for your VM
+8. Test your AAT
+9. Deploy your AAT
+10. examine your deployment
+11. Delete your deployment
+
+
+YAML code can be download and upload as templates.
+
+
+
+
+
+
+
+
+
+
+
